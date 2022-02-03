@@ -19,8 +19,7 @@ void Setup() {
 	snakeY = sizeY / 2;
 	appleX = rand() % sizeX;
 	appleY = rand() % sizeY;
-	score = 0;
-	
+	score = 0;	
 }
 
 
@@ -151,7 +150,9 @@ int main()
 		Input();
 		Logica();
 	}
+
 	cout << "¬аш счЄт = " << score << endl;
 	system("pause");
+
 	return 0;
 }
