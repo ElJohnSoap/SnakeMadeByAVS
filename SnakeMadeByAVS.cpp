@@ -13,7 +13,7 @@ eDirection dir;
 
 void Setup() {
 	srand(time(0));
-	endGame = true;
+	//endGame = true;
 	//dir = STOP;
 	snakeX = sizeX / 2;
 	snakeY = sizeY / 2;
@@ -95,9 +95,7 @@ void Logica()
 {
 	prevX = snakeX;
 	prevY = snakeY;
-	//int prev2X, prev2Y;
-	//tailArr[0] = snakeX;
-	//tailArr2[0] = snakeY;
+	
 	switch (dir)
 	{
 	case LEFT:
@@ -118,7 +116,7 @@ void Logica()
 
 	}
 	if (snakeX >= sizeX)
-		snakeX = 0;
+		snakeX = 0; //можно endGame = false и игра закончится
 	else if (snakeX < 0)
 		snakeX = sizeX - 1;
 
@@ -142,17 +140,35 @@ void Logica()
 int main()
 {
 	setlocale(0, "");
-	
-	Setup();
-	while (endGame)
+	do
 	{
-		GameField();
-		Input();
-		Logica();
-	}
+		int begin;
+		cout << "Игра \"Змейка\"" << endl;
+		cout << "Управление в игре :" << endl;
+		cout << "      W - " << (char)24 << endl;
+		//cout << "A - " << (char)17 << endl;
+		cout << (char)17 << " - A" << "\t   D - " << (char)26 << endl;
+		cout << "      S - " << (char)25 << endl;
+		cout << "X - выход" << endl;
+		cout << "Для начала игры нажмите - 1";
+		cout << " Для выхода нажмите - 2" << endl;
+		cin >> begin;
+		if (begin == 2)
+			endGame = false;
+		else endGame = true;
 
-	cout << "Ваш счёт = " << score << endl;
-	system("pause");
+		Setup();
+		while (endGame)
+		{
+			GameField();
+			Input();
+			Logica();
+		}
+
+		cout << "Ваш счёт = " << score << endl;
+	}
+	//system("pause");
+	while (endGame);
 
 	return 0;
 }
